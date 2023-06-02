@@ -7,32 +7,39 @@ import {
 
 /**
  * Converts a UTF-16 encoded string to a UTF-8 encoded string.
- * @param {string} str - The UTF-16 encoded string to convert.
- * @returns {string} - The UTF-8 encoded version of the input string.
+ * @param str The UTF-16 encoded string to convert.
+ * @returns The UTF-8 encoded version of the input string.
  */
 export function utf16to8(str: string): string {
-  let out = "",
-    i: number,
-    c: number;
-  const len: number = str.length;
-  for (i = 0; i < len; i++) {
+  const out: string[] = [];
+  let i: number;
+  let c: number;
+  for (i = 0; i < str.length; i++) {
     c = str.charCodeAt(i);
     if (c >= 0x0001 && c <= 0x007f) {
-      out += str.charAt(i);
+      out.push(str.charAt(i));
     } else if (c > 0x07ff) {
-      out += String.fromCharCode(0xe0 | ((c >> 12) & 0x0f));
-      out += String.fromCharCode(0x80 | ((c >> 6) & 0x3f));
-      out += String.fromCharCode(0x80 | ((c >> 0) & 0x3f));
+      out.push(String.fromCharCode(0xe0 | ((c >> 12) & 0x0f)));
+      out.push(String.fromCharCode(0x80 | ((c >> 6) & 0x3f)));
+      out.push(String.fromCharCode(0x80 | ((c >> 0) & 0x3f)));
     } else {
-      out += String.fromCharCode(0xc0 | ((c >> 6) & 0x1f));
-      out += String.fromCharCode(0x80 | ((c >> 0) & 0x3f));
+      out.push(String.fromCharCode(0xc0 | ((c >> 6) & 0x1f)));
+      out.push(String.fromCharCode(0x80 | ((c >> 0) & 0x3f)));
     }
   }
-  return out;
+  return out.join("");
 }
 
 /**
  * Draw a rounded square in the canvas
+ * @param lineWidth Width of the line to draw.
+ * @param x X-coordinate of the square.
+ * @param y Y-coordinate of the square.
+ * @param size Size of the square.
+ * @param color Color of the square.
+ * @param radii Radius of the rounded corners. Can be a single value or an array of four values (top-left, top-right, bottom-right, bottom-left).
+ * @param fill Whether to fill the square.
+ * @param ctx The canvas context.
  */
 export function drawRoundedSquare(
   lineWidth: number,
@@ -95,6 +102,13 @@ export function drawRoundedSquare(
 
 /**
  * Draw a single positional pattern eye.
+ * @param ctx The canvas context.
+ * @param cellSize Size of each cell.
+ * @param offset Offset from the edges.
+ * @param row Row number.
+ * @param col Column number.
+ * @param color Color of the eye.
+ * @param [radii=[0, 0, 0, 0]] Radii of the rounded corners.
  */
 export function drawPositioningPattern(
   ctx: CanvasRenderingContext2D,
@@ -142,7 +156,11 @@ export function drawPositioningPattern(
 }
 
 /**
- * Is this dot inside a positional pattern zone.
+ * Check if a dot is inside a positional pattern zone.
+ * @param col Column number.
+ * @param row Row number.
+ * @param zones List of positional pattern zones.
+ * @returns True if the dot is in a positional pattern zone, false otherwise.
  */
 export function isInPositioninZone(
   col: number,

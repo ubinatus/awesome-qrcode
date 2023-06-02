@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-import { type ECLevel, type QRStyle } from "@awesome-qrcode/react";
+import { type DataStyle, type ECLevel } from "@awesome-qrcode/react";
 
 export const defaultValues = {
   value: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
@@ -13,7 +13,7 @@ export const defaultValues = {
   removeQrCodeBehindLogo: false,
   eyeColor: "#000000",
   eyeRadius: 12,
-  qrStyle: "squares" as QRStyle,
+  dataStyle: "squares" as DataStyle,
 };
 
 export const ecLevelOptions = [
@@ -31,7 +31,6 @@ export const formSchema = z
     fgColor: z.string(),
     size: z.number().default(150),
     logoImage: z.string(),
-    enableCORS: z.boolean().default(true),
     logoHeight: z.number().default(50),
     logoWidth: z.number().default(50),
     logoOpacity: z.number().default(1),
@@ -45,7 +44,7 @@ export const formSchema = z
         (x) => x !== null && !isNaN(x) && x >= 0,
         "Enter a nonnegative number",
       ),
-    qrStyle: z.enum(["squares", "dots"]),
+    dataStyle: z.enum(["squares", "dots"]),
   })
   .required();
 

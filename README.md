@@ -18,8 +18,9 @@ This Turborepo includes the following:
 
 - `docs`: A placeholder documentation site powered by [Next.js](https://nextjs.org/)
 - `@awesome-qrcode/react`: React component
-- `@awesome-qrcode/server`: server library
-- `@awesome-qrcode/config/eslint-config`: ESLint preset
+- `@awesome-qrcode/core`: core library
+- `@awesome-qrcode/eslint-config`: ESLint preset
+- `@awesome-qrcode/tailwind-config`: Tailwind configuration preset
 
 Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
 
@@ -33,11 +34,11 @@ This Turborepo has some additional tools already setup for you:
 
 ### Useful commands
 
-- `yarn build` - Build all packages and the docs site
-- `yarn dev` - Develop all packages and the docs site
-- `yarn lint` - Lint all packages
-- `yarn changeset` - Generate a changeset
-- `yarn clean` - Clean up all `node_modules` and `dist` folders (runs each package's clean script)
+- `pnpm build` - Build all packages and the docs site
+- `pnpm dev` - Develop all packages and the docs site
+- `pnpm lint` - Lint all packages
+- `pnpm changeset` - Generate a changeset
+- `pnpm clean` - Clean up all `node_modules` and `dist` folders (runs each package's clean script)
 
 ### Changing the npm organization scope
 
@@ -45,7 +46,7 @@ The npm organization scope for this design system starter is `@acme`. To change 
 
 - Rename folders in `packages/*` to replace `acme` with your desired scope
 - Search and replace `acme` with your desired scope
-- Re-run `yarn install`
+- Re-run `pnpm install`
 
 ## Versioning and Publishing packages
 

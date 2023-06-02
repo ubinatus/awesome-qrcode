@@ -24,5 +24,20 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "description": "Create amazing QRCodes with customized branding",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ubinatus/awesome-qrcode.git"
+  },
+  "keywords": [
+    "react",
+    "qrcode"
+  ],
+  "author": "ubinatus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ubinatus/awesome-qrcode/issues"
+  },
+  "homepage": "https://github.com/ubinatus/awesome-qrcode#readme"
 }

@@ -1,8 +1,0 @@
-{
-  "extends": "../../tsconfig.json",
-  "include": ["."],
-  "compilerOptions": {
-    "incremental": false
-  },
-  "exclude": ["dist", "build", "node_modules"]
-}

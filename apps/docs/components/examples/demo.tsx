@@ -6,7 +6,7 @@ export function AwesomeQRCodeDemo() {
       value="This is an Awesome QRCode"
       ecLevel="M"
       size={200}
-      qrStyle="dots"
+      dataStyle="dots"
       eyeRadius={12}
       bgColor="#FFFFFF"
       fgColor="black"

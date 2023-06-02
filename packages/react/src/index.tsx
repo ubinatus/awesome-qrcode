@@ -7,13 +7,13 @@ import {
   utf16to8,
   type Coordinates,
   type CornerRadii,
+  type DataStyle,
   type ECLevel,
   type EyeColor,
   type Props,
-  type QRStyle,
 } from "@awesome-qrcode/core";
 
-export { ECLevel, QRStyle };
+export { ECLevel, DataStyle };
 
 export interface AwesomeQRCodeProps extends Props {
   id?: string;
@@ -32,9 +32,9 @@ export const AwesomeQRCode = React.forwardRef<
     {
       id,
       value = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      dataStyle = "squares",
       size = 150,
       ecLevel = "M",
-      enableCORS = false,
       quietZone = 10,
       bgColor = "#FFFFFF",
       fgColor = "#000000",
@@ -43,12 +43,12 @@ export const AwesomeQRCode = React.forwardRef<
       logoHeight = 0,
       logoPadding = 0,
       logoOpacity = 0,
-      logoOnLoad,
       removeQrCodeBehindLogo,
-      logoPaddingStyle = "square",
+      logoRadiusStyle = "square",
       eyeRadius = [0, 0, 0],
       eyeColor,
-      qrStyle = "squares",
+      onLoad,
+      onError,
     },
     ref,
   ) => {
@@ -85,7 +85,7 @@ export const AwesomeQRCode = React.forwardRef<
       ];
 
       ctx.strokeStyle = fgColor;
-      if (qrStyle === "dots") {
+      if (dataStyle === "dots") {
         ctx.fillStyle = fgColor;
         const radius = cellSize / 2;
         for (let row = 0; row < length; row++) {
@@ -170,88 +170,100 @@ export const AwesomeQRCode = React.forwardRef<
       }
 
       if (logoImage) {
-        const image = new Image();
-        if (enableCORS) {
-          image.crossOrigin = "anonymous";
-        }
-        image.onload = () => {
-          ctx.save();
+        void fetch(logoImage)
+          .then((response) => response.blob())
+          .then((blob) => createImageBitmap(blob))
+          .then((imageBitmap) => {
+            ctx.save();
 
-          const dWidthLogo = logoWidth || size * 0.2;
-          const dHeightLogo = logoHeight || dWidthLogo;
-          const dxLogo = (size - dWidthLogo) / 2;
-          const dyLogo = (size - dHeightLogo) / 2;
+            const dWidthLogo = logoWidth || size * 0.2;
+            const dHeightLogo = logoHeight || dWidthLogo;
+            const dxLogo = (size - dWidthLogo) / 2;
+            const dyLogo = (size - dHeightLogo) / 2;
 
-          if (removeQrCodeBehindLogo || logoPadding) {
-            ctx.beginPath();
+            if (removeQrCodeBehindLogo || logoPadding) {
+              ctx.beginPath();
 
-            ctx.strokeStyle = bgColor;
-            ctx.fillStyle = bgColor;
+              ctx.strokeStyle = bgColor;
+              ctx.fillStyle = bgColor;
 
-            const dWidthLogoPadding = dWidthLogo + 2 * logoPadding;
-            const dHeightLogoPadding = dHeightLogo + 2 * logoPadding;
-            const dxLogoPadding = dxLogo + offset - logoPadding;
-            const dyLogoPadding = dyLogo + offset - logoPadding;
+              const dWidthLogoPadding = dWidthLogo + 2 * logoPadding;
+              const dHeightLogoPadding = dHeightLogo + 2 * logoPadding;
+              const dxLogoPadding = dxLogo + offset - logoPadding;
+              const dyLogoPadding = dyLogo + offset - logoPadding;
 
-            if (logoPaddingStyle === "circle") {
-              const dxCenterLogoPadding = dxLogoPadding + dWidthLogoPadding / 2;
-              const dyCenterLogoPadding =
-                dyLogoPadding + dHeightLogoPadding / 2;
-              ctx.ellipse(
-                dxCenterLogoPadding,
-                dyCenterLogoPadding,
-                dWidthLogoPadding / 2,
-                dHeightLogoPadding / 2,
-                0,
-                0,
-                2 * Math.PI,
-              );
-              ctx.stroke();
-              ctx.fill();
-            } else {
-              ctx.fillRect(
-                dxLogoPadding,
-                dyLogoPadding,
-                dWidthLogoPadding,
-                dHeightLogoPadding,
+              if (logoRadiusStyle === "circle") {
+                const dxCenterLogoPadding =
+                  dxLogoPadding + dWidthLogoPadding / 2;
+                const dyCenterLogoPadding =
+                  dyLogoPadding + dHeightLogoPadding / 2;
+                ctx.ellipse(
+                  dxCenterLogoPadding,
+                  dyCenterLogoPadding,
+                  dWidthLogoPadding / 2,
+                  dHeightLogoPadding / 2,
+                  0,
+                  0,
+                  2 * Math.PI,
+                );
+                ctx.stroke();
+                ctx.fill();
+              } else {
+                ctx.fillRect(
+                  dxLogoPadding,
+                  dyLogoPadding,
+                  dWidthLogoPadding,
+                  dHeightLogoPadding,
+                );
+              }
+            }
+
+            ctx.globalAlpha = logoOpacity;
+            ctx.drawImage(
+              imageBitmap,
+              dxLogo + offset,
+              dyLogo + offset,
+              dWidthLogo,
+              dHeightLogo,
+            );
+            ctx.restore();
+            if (onLoad) {
+              onLoad();
+            }
+          })
+          .catch((err) => {
+            if (onError) {
+              onError(
+                err instanceof Error
+                  ? err.message
+                  : "Failed to generate QRCode with logo",
               );
             }
-          }
-
-          ctx.globalAlpha = logoOpacity;
-          ctx.drawImage(
-            image,
-            dxLogo + offset,
-            dyLogo + offset,
-            dWidthLogo,
-            dHeightLogo,
-          );
-          ctx.restore();
-          if (logoOnLoad) {
-            logoOnLoad();
-          }
-        };
-        image.src = logoImage;
+          });
+      } else {
+        if (onLoad) {
+          onLoad();
+        }
       }
     }, [
-      bgColor,
       ecLevel,
-      enableCORS,
-      eyeColor,
-      eyeRadius,
-      fgColor,
-      logoHeight,
-      logoImage,
-      logoOnLoad,
-      logoOpacity,
-      logoPadding,
-      logoPaddingStyle,
-      logoWidth,
-      qrStyle,
-      quietZone,
-      removeQrCodeBehindLogo,
-      size,
       value,
+      size,
+      quietZone,
+      bgColor,
+      fgColor,
+      dataStyle,
+      logoImage,
+      eyeRadius,
+      eyeColor,
+      logoWidth,
+      logoHeight,
+      removeQrCodeBehindLogo,
+      logoPadding,
+      logoOpacity,
+      onLoad,
+      logoRadiusStyle,
+      onError,
     ]);
 
     function getUrl() {

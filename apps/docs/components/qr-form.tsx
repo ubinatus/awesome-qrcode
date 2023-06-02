@@ -61,7 +61,7 @@ export function QRForm({ setOptions }: Props) {
         <div className="flex flex-col gap-6 md:flex-row">
           <FormField
             control={form.control}
-            name="qrStyle"
+            name="dataStyle"
             render={({ field }) => {
               return (
                 <FormItem className="space-y-3 md:min-w-[180px]">

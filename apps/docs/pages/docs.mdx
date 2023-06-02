@@ -17,7 +17,7 @@ import { AwesomeQRCodeDemo } from "@/components/examples/demo";
         value="This is an Awesome QRCode"
         ecLevel="M"
         size={200}
-        qrStyle="dots"
+        dataStyle="dots"
         eyeRadius={12}
         bgColor="#FFFFFF"
         fgColor="black"
@@ -53,31 +53,119 @@ yarn add @awesome-qrcode/react
 
 ## Props
 
-| Prop                   |       Type       |       Default       |             Description |
-| :--------------------- | :--------------: | :-----------------: | ----------------------: |
-| value                  |      string      | https://youtube.com | Text to generate the QR |
-| size                   |      number      |         150         |          Size of the QR |
-| ecLevel                |     ECLevel      |          M          |  Error correction level |
-| enableCORS             |     boolean      |        false        |                         |
-| quietZone              |      number      |          x          |                         |
-| bgColor                |      string      |       #FFFFFF       |                         |
-| fgColor                |      string      |       #000000       |                         |
-| logoImage              |      string      |                     |                         |
-| logoWidth              |      number      |          0          |                         |
-| logoHeight             |      number      |          0          |                         |
-| logoOpacity            |      number      |          0          |                         |
-| logoOnLoad             |     function     |                     |                         |
-| removeQrCodeBehindLogo |     boolean      |        false        |                         |
-| logoPadding            |      number      |          0          |                         |
-| logoPaddingStyle       | LogoPaddingStyle |         no          |                         |
-| eyeRadius              |                  |         no          |                         |
-| eyeColor               |                  |         no          |                         |
-| qrStyle                |     QRStyle      |         no          |                QR style |
+The following props are used to customize the QR code:
 
-### Extra types
+### value
+
+- **Type**: string
+- **Default**: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+- **Description**: The data to be encoded in the QR code.
+
+### size
+
+- **Type**: number
+- **Default**: 150
+- **Description**: The size of the QR code in pixels.
+
+### dataStyle
+
+- **Type**: DataStyle
+- **Default**: "squares"
+- **Description**: The style of the QR code data modules.
+
+### ecLevel
+
+- **Type**: ECLevel
+- **Default**: "M"
+- **Description**: The error correction level of the QR code.
+
+### quietZone
+
+- **Type**: number
+- **Default**: 10
+- **Description**: The size of the quiet zone around the QR code in pixels.
+
+### bgColor
+
+- **Type**: string
+- **Default**: "#FFFFFF"
+- **Description**: The background color of the QR code.
+
+### fgColor
+
+- **Type**: string
+- **Default**: "#000000"
+- **Description**: The color of the QR code modules.
+
+### logoImage
+
+- **Type**: string
+- **Description**: The URL of the image to be displayed in the center of the QR code.
+
+### logoWidth
+
+- **Type**: number
+- **Default**: 0
+- **Description**: The width of the logo in pixels.
+
+### logoHeight
+
+- **Type**: number
+- **Default**: 0
+- **Description**: The height of the logo in pixels.
+
+### logoOpacity
+
+- **Type**: number
+- **Default**: 0
+- **Description**: The opacity of the logo. Ranges from 0 to 1.
+
+### logoPadding
+
+- **Type**: number
+- **Default**: 0
+- **Description**: The padding around the logo in pixels.
+
+### logoRadiusStyle
+
+- **Type**: LogoRadiusStyle
+- **Description**: The shape of the padding around the logo.
+
+### removeQrCodeBehindLogo
+
+- **Type**: boolean
+- **Description**: Whether to remove the QR code modules behind the logo.
+
+### eyeRadius
+
+- **Type**: CornerRadii | [CornerRadii, CornerRadii, CornerRadii]
+- **Default**: [0, 0, 0]
+- **Description**: The radius of the corners of the positioning eyes in pixels.
+
+### eyeColor
+
+- **Type**: EyeColor | [EyeColor, EyeColor, EyeColor]
+- **Description**: The color of the positioning eyes.
+
+### onLoad
+
+- **Type**: function
+- **Description**: The function to be called when the QR code has loaded.
+
+### onError
+
+- **Type**: function
+- **Description**: The function to be called if there was an error loading the QR code.
+
+## Extra types
 
 ```tsc
 type ECLevel = "L" | "M" | "Q" | "H";
-type LogoPaddingStyle = "square" | "circle";
-type QRStyle = "squares" | "dots";
+type LogoRadiusStyle = "square" | "circle";
+type DataStyle = "squares" | "dots";
 ```
+
+## Misc
+
+- This library is a refactor of Giulia Corò's [react-qrcode-logo](https://github.com/gcoro/react-qrcode-logo)
+- The word "QR Code" is registered trademark of [DENSO WAVE INCORPORATED](http://www.denso-wave.com/qrcode/faqpatent-e.html)
