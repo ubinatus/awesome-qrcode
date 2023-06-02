@@ -1,31 +1,30 @@
 # @awesome-qrcode
 
-## What's inside?
+**The best way to generate custom QRCodes 🔥**
 
-This Turborepo includes the following:
+AwesomeQRCode is a [React](https://reactjs.org/) library that makes it easy to generate QRCodes with custom branding.
 
-### Apps and Packages
+- ✅ Easily customizable
+- 🦄 Built on top of [qrcode-generator](https://github.com/kazuhikoarase/qrcode-generator)
+- 🧠 Inspired by [react-qrcode-logo](https://github.com/gcoro/react-qrcode-logo)
 
-- `docs`: A placeholder documentation site powered by [Next.js](https://nextjs.org/)
-- `@awesome-qrcode/react`: React component
-- `@awesome-qrcode/core`: core library
-- `@awesome-qrcode/eslint-config`: ESLint preset
-- `@awesome-qrcode/tailwind-config`: Tailwind configuration preset
+## Documentation
 
-Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
+For full documentation, visit [awesome-qrcode.vercel.app](https://awesome-qrcode.vercel.app/docs).
 
-### Utilities
+### Try it out
 
-This Turborepo has some additional tools already setup for you:
+You can use the CodeSandbox links below try out:
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+- with [Vite + React](https://codesandbox.io/p/sandbox/vite-wpebgz)
+- with [Next.js App Router](https://codesandbox.io/p/sandbox/nextjs-with-app-3po11o)
 
-### Useful commands
+## Contributing
 
-- `pnpm build` - Build all packages and the docs site
-- `pnpm dev` - Develop all packages and the docs site
-- `pnpm lint` - Lint all packages
-- `pnpm changeset` - Generate a changeset
-- `pnpm clean` - Clean up all `node_modules` and `dist` folders (runs each package's clean script)
+Please follow our [contributing guidelines](./.github/CONTRIBUTING.md).
+
+## License
+
+Licensed under the MIT License
+
+See [LICENSE](./LICENSE) for more information.
