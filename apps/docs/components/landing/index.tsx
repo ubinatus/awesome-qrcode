@@ -1,4 +1,4 @@
-import { useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { CopyCode } from "@/components/copy-code";
 import { QRForm } from "@/components/qr-form";
 import { Button } from "@/components/ui/button";
@@ -60,7 +60,13 @@ function SiteCards() {
   const awesomeQRCodeRef = useRef<AwesomeQRCodeRef>(null);
   // State
   const [options, setOptions] = useState<AwesomeQRCodeProps>(defaultValues);
-
+  // Effects
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [options]);
   // Downloading the QRCode
   function download() {
     if (awesomeQRCodeRef.current) {

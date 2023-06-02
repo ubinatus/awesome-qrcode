@@ -34,7 +34,6 @@ export function QRForm({ setOptions }: Props) {
   });
   // Handler
   function onSubmit(values: FormValues) {
-    console.log("hola");
     setOptions(values);
   }
   // Mount
