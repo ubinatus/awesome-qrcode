@@ -1,0 +1,83 @@
+---
+title: Documentation
+description: "Documentation for AwesomeQRCode"
+---
+
+import { ComponentExample } from "@/components/component-example";
+import { AwesomeQRCodeDemo } from "@/components/examples/demo";
+
+<ComponentExample src="/apps/docs/components/examples/demo.tsx">
+<AwesomeQRCodeDemo />
+```tsx
+  import { AwesomeQRCode } from "@awesome-qrcode/react";
+  
+  function Demo() {
+    return (
+      <AwesomeQRCode
+        value="This is an Awesome QRCode"
+        ecLevel="M"
+        size={200}
+        qrStyle="dots"
+        eyeRadius={12}
+        bgColor="#FFFFFF"
+        fgColor="black"
+        eyeColor="rgb(139,92,246)"
+      />
+    ) 
+  }
+````
+</ComponentExample>
+
+## Installation
+
+import { Tab, Tabs } from "nextra-theme-docs";
+
+<Tabs items={["pnpm", "npm", "yarn"]}>
+<Tab>
+```bash
+pnpm add @awesome-qrcode/react
+```
+
+</Tab>
+<Tab>
+```bash
+npm install @awesome-qrcode/react
+```
+</Tab>
+<Tab>
+```bash
+yarn add @awesome-qrcode/react
+```
+</Tab>
+</Tabs>
+
+## Props
+
+| Prop                   |       Type       |       Default       |             Description |
+| :--------------------- | :--------------: | :-----------------: | ----------------------: |
+| value                  |      string      | https://youtube.com | Text to generate the QR |
+| size                   |      number      |         150         |          Size of the QR |
+| ecLevel                |     ECLevel      |          M          |  Error correction level |
+| enableCORS             |     boolean      |        false        |                         |
+| quietZone              |      number      |          x          |                         |
+| bgColor                |      string      |       #FFFFFF       |                         |
+| fgColor                |      string      |       #000000       |                         |
+| logoImage              |      string      |                     |                         |
+| logoWidth              |      number      |          0          |                         |
+| logoHeight             |      number      |          0          |                         |
+| logoOpacity            |      number      |          0          |                         |
+| logoOnLoad             |     function     |                     |                         |
+| removeQrCodeBehindLogo |     boolean      |        false        |                         |
+| logoPadding            |      number      |          0          |                         |
+| logoPaddingStyle       | LogoPaddingStyle |         no          |                         |
+| eyeRadius              |                  |         no          |                         |
+| eyeColor               |                  |         no          |                         |
+| qrStyle                |     QRStyle      |         no          |                QR style |
+
+### Extra types
+
+```tsc
+type ECLevel = "L" | "M" | "Q" | "H";
+type LogoPaddingStyle = "square" | "circle";
+type QRStyle = "squares" | "dots";
+```

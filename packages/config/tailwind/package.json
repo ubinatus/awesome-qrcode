@@ -1,0 +1,23 @@
+{
+  "name": "@awesome-qrcode/tailwind-config",
+  "version": "0.1.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "files": [
+    "index.ts",
+    "postcss.js"
+  ],
+  "scripts": {
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
+    "@types/node": "^20.2.5",
+    "autoprefixer": "^10.4.14",
+    "class-variance-authority": "^0.6.0",
+    "lucide-react": "^0.233.0",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2",
+    "tailwindcss-animate": "^1.0.5"
+  }
+}

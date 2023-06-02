@@ -1,0 +1,7 @@
+packages:
+  - apps/docs
+  - packages/config/eslint
+  - packages/config/tailwind
+  - packages/core
+  - packages/react
+  - packages/utils
