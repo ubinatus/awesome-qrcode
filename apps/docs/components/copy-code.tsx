@@ -1,10 +1,9 @@
 import React from "react";
+import { Button } from "@/components/ui/button";
 import { useClipboard } from "@/lib/useClipboard";
 import { cn } from "@/lib/utils";
 import { Popover } from "@headlessui/react";
 import { CheckIcon, CopyIcon } from "lucide-react";
-
-import { Button } from "./ui/button";
 
 export const CopyCode = () => {
   // State
@@ -58,40 +57,24 @@ export const CopyCode = () => {
             <Popover.Panel className="absolute z-10 m-2 -ml-4">
               <div
                 className={cn(
-                  "rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-50 dark:bg-popover-foreground",
-                  "flex max-w-[64px] flex-col p-0",
+                  "z-50 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+                  "rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-50 dark:border-none dark:bg-popover-foreground",
+                  "flex max-w-[64px] flex-col overflow-hidden p-0",
                 )}
               >
-                <Button
-                  variant="ghost"
-                  className="h-8 rounded-none py-0 !leading-tight"
-                  onClick={() => {
-                    close();
-                    handleCopy("npm");
-                  }}
-                >
-                  npm
-                </Button>
-                <Button
-                  variant="ghost"
-                  className="h-8 rounded-none py-0 !leading-tight"
-                  onClick={() => {
-                    close();
-                    handleCopy("yarn");
-                  }}
-                >
-                  yarn
-                </Button>
-                <Button
-                  variant="ghost"
-                  className="h-8 rounded-none py-0 !leading-tight"
-                  onClick={() => {
-                    close();
-                    handleCopy("pnpm");
-                  }}
-                >
-                  pnpm
-                </Button>
+                {["npm", "yarn", "pnpm"].map((command) => (
+                  <Button
+                    key={command}
+                    variant="ghost"
+                    className="h-8 rounded-none py-0 !leading-tight dark:text-white dark:hover:bg-white/5"
+                    onClick={() => {
+                      close();
+                      handleCopy(command);
+                    }}
+                  >
+                    {command}
+                  </Button>
+                ))}
               </div>
             </Popover.Panel>
           </>

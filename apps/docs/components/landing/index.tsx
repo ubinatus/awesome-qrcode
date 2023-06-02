@@ -85,7 +85,7 @@ function SiteCards() {
           </Button>
         </div>
       </Card>
-      <div className="relative -z-50 max-w-lg">
+      <div className="relative max-w-lg">
         <QRForm setOptions={(val) => setOptions(val)} />
       </div>
     </div>
