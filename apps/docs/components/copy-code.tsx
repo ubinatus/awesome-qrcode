@@ -42,8 +42,8 @@ export const CopyCode = () => {
   };
 
   return (
-    <div className="flex w-full items-center justify-between gap-2 rounded-xl bg-gray-200 py-2 pl-4 pr-3 dark:bg-gray-800 md:max-w-[420px]">
-      <code className="sm:text-md text-base md:text-lg">{copyCommand}</code>
+    <div className="flex w-full max-w-[340px] items-center justify-between gap-2 rounded-xl bg-gray-200 py-2 pl-4 pr-3 dark:bg-gray-800 md:max-w-[420px]">
+      <code className="sm:text-md text-xs md:text-lg">{copyCommand}</code>
       <Popover>
         {({ close }) => (
           /* Use the `open` state to conditionally change the direction of the chevron icon. */
