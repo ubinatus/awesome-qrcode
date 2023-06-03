@@ -1,5 +1,6 @@
 packages:
   - apps/docs
+  - apps/examples/*
   - packages/config/eslint
   - packages/config/tailwind
   - packages/react
