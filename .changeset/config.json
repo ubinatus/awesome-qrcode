@@ -6,5 +6,6 @@
   "linked": [],
   "access": "public",
   "updateInternalDependencies": "patch",
-  "ignore": ["@awesome-qrcode/docs"]
+  "ignore": ["@awesome-qrcode/docs"],
+  "baseBranch": "main"
 }
