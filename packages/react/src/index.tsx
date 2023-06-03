@@ -5,11 +5,13 @@ import {
   drawPositioningPattern,
   isInPositioninZone,
   utf16to8,
-  type Coordinates,
-  type DataStyle,
-  type ECLevel,
-  type Props,
-} from "@awesome-qrcode/core";
+} from "./utils";
+import type {
+  Coordinates,
+  DataStyle,
+  ECLevel,
+  Props,
+} from "./types";
 
 export { ECLevel, DataStyle };
 
