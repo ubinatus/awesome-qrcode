@@ -195,6 +195,10 @@ importers:
         version: 1.0.5(tailwindcss@3.3.2)
 
   packages/react:
+    dependencies:
+      qrcode-generator:
+        specifier: ^1.4.4
+        version: 1.4.4
     devDependencies:
       '@awesome-qrcode/eslint-config':
         specifier: workspace:*
@@ -208,9 +212,6 @@ importers:
       eslint:
         specifier: ^8.41.0
         version: 8.41.0
-      qrcode-generator:
-        specifier: ^1.4.4
-        version: 1.4.4
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -5681,7 +5682,7 @@ packages:
 
   /qrcode-generator@1.4.4:
     resolution: {integrity: sha512-HM7yY8O2ilqhmULxGMpcHSF1EhJJ9yBj8gvDEuZ6M+KGJ0YY2hKpnXvRD+hZPLrDVck3ExIGhmPtSdcjC+guuw==}
-    dev: true
+    dev: false
 
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
