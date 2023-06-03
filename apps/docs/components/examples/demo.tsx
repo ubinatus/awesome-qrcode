@@ -3,7 +3,7 @@ import { AwesomeQRCode } from "@awesome-qrcode/react";
 export function AwesomeQRCodeDemo() {
   return (
     <AwesomeQRCode
-      value="This is an Awesome QRCode"
+      value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
       ecLevel="M"
       size={200}
       dataStyle="dots"

@@ -5,6 +5,8 @@ description: "Documentation for AwesomeQRCode"
 
 import { ComponentExample } from "@/components/component-example";
 import { AwesomeQRCodeDemo } from "@/components/examples/demo";
+import { PropsTable } from "@/components/props-table";
+import { Tab, Tabs } from "nextra-theme-docs";
 
 <ComponentExample src="/apps/docs/components/examples/demo.tsx">
 <AwesomeQRCodeDemo />
@@ -30,8 +32,6 @@ import { AwesomeQRCodeDemo } from "@/components/examples/demo";
 
 ## Installation
 
-import { Tab, Tabs } from "nextra-theme-docs";
-
 <Tabs items={["pnpm", "npm", "yarn"]}>
 <Tab>
 ```bash
@@ -55,10 +55,13 @@ yarn add @awesome-qrcode/react
 
 The following props are used to customize the QR code:
 
+<Tabs items={["View in list", "View in table"]}>
+<Tab>
+
 ### value
 
 - **Type**: string
-- **Default**: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+- **Default**: "Awesome QRCode"
 - **Description**: The data to be encoded in the QR code.
 
 ### size
@@ -138,13 +141,13 @@ The following props are used to customize the QR code:
 
 ### eyeRadius
 
-- **Type**: CornerRadii | [CornerRadii, CornerRadii, CornerRadii]
-- **Default**: [0, 0, 0]
+- **Type**: EyeRadius
+- **Default**: 0
 - **Description**: The radius of the corners of the positioning eyes in pixels.
 
 ### eyeColor
 
-- **Type**: EyeColor | [EyeColor, EyeColor, EyeColor]
+- **Type**: EyeColor
 - **Description**: The color of the positioning eyes.
 
 ### onLoad
@@ -157,15 +160,67 @@ The following props are used to customize the QR code:
 - **Type**: function
 - **Description**: The function to be called if there was an error loading the QR code.
 
+</Tab>
+<Tab>
+  <PropsTable/>
+</Tab>
+</Tabs>
+
 ## Extra types
 
-```tsc
-type ECLevel = "L" | "M" | "Q" | "H";
-type LogoRadiusStyle = "square" | "circle";
+```typescript
+/**
+ * Represents the style of the QR code data
+ */
 type DataStyle = "squares" | "dots";
+
+/**
+ * Represents the style of the logo radius
+ */
+type LogoRadiusStyle = "square" | "circle";
+
+/**
+ * Represents the error correction level of the QR code.
+ * Higher levels offer a better error resistance but reduce the symbol's capacity to be scanned.
+ */
+type ECLevel = "L" | "M" | "Q" | "H";
+
+/**
+ * Represents a color configuration for an eye pattern.
+ * Can be a simple color (string) or a detailed configuration (InnerOuterColor).
+ */
+export type EyeColor = string | InnerOuterColor;
+
+/**
+ * Provides detailed color configuration for an eye pattern.
+ */
+export type InnerOuterColor = {
+  /** Inner color of the eye pattern. */
+  inner: string;
+
+  /** Outer color of the eye pattern. */
+  outer: string;
+};
+
+/**
+ * Represents corner radii configuration for the position patterns.
+ * Can be a single radius (number) or a detailed configuration (InnerOuterRadius).
+ */
+export type EyeRadius = number | InnerOuterRadius;
+
+/**
+ * Provides detailed radius configuration for an eye pattern.
+ */
+export type InnerOuterRadius = {
+  /** Inner radii of the pattern corners. */
+  inner: number;
+
+  /** Outer radii of the pattern corners. */
+  outer: number;
+};
 ```
 
-## Misc
+---
 
 - This library is a refactor of Giulia Corò's [react-qrcode-logo](https://github.com/gcoro/react-qrcode-logo)
 - This implementation is based on JIS X 0510:1999.

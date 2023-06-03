@@ -1,8 +1,8 @@
 import {
   type Coordinates,
-  type CornerRadii,
   type EyeColor,
-  type InnerOuterRadii,
+  type EyeRadius,
+  type InnerOuterRadius,
 } from "./types";
 
 /**
@@ -108,7 +108,7 @@ export function drawRoundedSquare(
  * @param row Row number.
  * @param col Column number.
  * @param color Color of the eye.
- * @param [radii=[0, 0, 0, 0]] Radii of the rounded corners.
+ * @param radii Radii of the rounded corners.
  */
 export function drawPositioningPattern(
   ctx: CanvasRenderingContext2D,
@@ -117,13 +117,13 @@ export function drawPositioningPattern(
   row: number,
   col: number,
   color: EyeColor,
-  radii: CornerRadii = [0, 0, 0, 0],
+  radii: EyeRadius = 0,
 ) {
   const lineWidth = Math.ceil(cellSize);
 
-  let radiiOuter: InnerOuterRadii["outer"];
-  let radiiInner: InnerOuterRadii["inner"];
-  if (typeof radii !== "number" && !Array.isArray(radii)) {
+  let radiiOuter: InnerOuterRadius["outer"];
+  let radiiInner: InnerOuterRadius["inner"];
+  if (typeof radii !== "number") {
     radiiOuter = radii.outer || 0;
     radiiInner = radii.inner || 0;
   } else {

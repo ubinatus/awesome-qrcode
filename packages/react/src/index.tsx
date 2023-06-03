@@ -6,10 +6,8 @@ import {
   isInPositioninZone,
   utf16to8,
   type Coordinates,
-  type CornerRadii,
   type DataStyle,
   type ECLevel,
-  type EyeColor,
   type Props,
 } from "@awesome-qrcode/core";
 
@@ -31,7 +29,7 @@ export const AwesomeQRCode = React.forwardRef<
   (
     {
       id,
-      value = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      value = "Awesome QRCode",
       dataStyle = "squares",
       size = 150,
       ecLevel = "M",
@@ -45,7 +43,7 @@ export const AwesomeQRCode = React.forwardRef<
       logoOpacity = 0,
       removeQrCodeBehindLogo,
       logoRadiusStyle = "square",
-      eyeRadius = [0, 0, 0],
+      eyeRadius = 0,
       eyeColor,
       onLoad,
       onError,
@@ -132,41 +130,16 @@ export const AwesomeQRCode = React.forwardRef<
       }
 
       // Draw positioning patterns
-      let i = 0;
       for (const { row, col } of positioningZones) {
-        let radii = eyeRadius;
-        let color: EyeColor | [EyeColor, EyeColor, EyeColor];
-
-        if (Array.isArray(radii)) {
-          radii = radii[i];
-        }
-        if (typeof radii == "number") {
-          radii = [radii, radii, radii, radii];
-        }
-
-        if (!eyeColor) {
-          // if not specified, eye color is the same as foreground,
-          color = fgColor;
-        } else {
-          if (Array.isArray(eyeColor)) {
-            // if array, we pass the single color
-            color = eyeColor[i];
-          } else {
-            color = eyeColor;
-          }
-        }
-
         drawPositioningPattern(
           ctx,
           cellSize,
           offset,
           row,
           col,
-          color,
-          radii as CornerRadii,
+          eyeColor || fgColor,
+          eyeRadius,
         );
-
-        i++;
       }
 
       if (logoImage) {

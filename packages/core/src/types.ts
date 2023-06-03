@@ -16,14 +16,14 @@ export type ECLevel = "L" | "M" | "Q" | "H";
 
 /**
  * Represents a color configuration for an eye pattern.
- * Can be a simple color (string) or a detailed configuration (InnerOuterEyeColor).
+ * Can be a simple color (string) or a detailed configuration (InnerOuterColor).
  */
-export type EyeColor = string | InnerOuterEyeColor;
+export type EyeColor = string | InnerOuterColor;
 
 /**
  * Provides detailed color configuration for an eye pattern.
  */
-export type InnerOuterEyeColor = {
+export type InnerOuterColor = {
   /** Inner color of the eye pattern. */
   inner: string;
 
@@ -32,21 +32,20 @@ export type InnerOuterEyeColor = {
 };
 
 /**
- * Represents corner radii configuration for a pattern.
- * Can be a single radius (number), array of radii (top-left, top-right, bottom-right, bottom-left)
- * or a detailed configuration (InnerOuterRadii).
+ * Represents corner radii configuration for the position patterns.
+ * Can be a single radius (number) or a detailed configuration (InnerOuterRadius).
  */
-export type CornerRadii =
-  | number
-  | [number, number, number, number]
-  | InnerOuterRadii;
+export type EyeRadius = number | InnerOuterRadius;
 
-export type InnerOuterRadii = {
+/**
+ * Provides detailed radius configuration for an eye pattern.
+ */
+export type InnerOuterRadius = {
   /** Inner radii of the pattern corners. */
-  inner: number | [number, number, number, number];
+  inner: number;
 
   /** Outer radii of the pattern corners. */
-  outer: number | [number, number, number, number];
+  outer: number;
 };
 
 export type DefaultOptions = Required<
@@ -143,12 +142,12 @@ export interface Props {
   /**
    * The radius of the corners of the positioning eyes in pixels.
    */
-  eyeRadius?: CornerRadii | [CornerRadii, CornerRadii, CornerRadii];
+  eyeRadius?: EyeRadius;
 
   /**
    * The color of the positioning eyes.
    */
-  eyeColor?: EyeColor | [EyeColor, EyeColor, EyeColor];
+  eyeColor?: EyeColor;
 
   /**
    * The function to be called when the QR code has loaded.
