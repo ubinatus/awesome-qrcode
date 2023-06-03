@@ -27,7 +27,8 @@
   "description": "Create amazing QRCodes with customized branding",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ubinatus/awesome-qrcode.git"
+    "url": "git+https://github.com/ubinatus/awesome-qrcode.git",
+    "directory": "packages/react"
   },
   "keywords": [
     "react",
@@ -38,5 +39,5 @@
   "bugs": {
     "url": "https://github.com/ubinatus/awesome-qrcode/issues"
   },
-  "homepage": "https://github.com/ubinatus/awesome-qrcode#readme"
+  "homepage": "https://awesome-qrcode.vercel.app"
 }
