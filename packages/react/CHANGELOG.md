@@ -1,5 +1,11 @@
 # @awesome-qrcode/react
 
+## 0.1.2
+
+### Patch Changes
+
+- 15b7262: Fix of dependencies
+
 ## 0.1.1
 
 ### Patch Changes
