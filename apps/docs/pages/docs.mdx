@@ -5,6 +5,7 @@ description: "Documentation for AwesomeQRCode"
 
 import { ComponentExample } from "@/components/component-example";
 import { AwesomeQRCodeDemo } from "@/components/examples/demo";
+import { DownloadDemo } from "@/components/examples/download";
 import { PropsTable } from "@/components/props-table";
 import { Tab, Tabs } from "nextra-theme-docs";
 
@@ -55,7 +56,10 @@ yarn add @awesome-qrcode/react
 
 The following props are used to customize the QR code:
 
-<Tabs items={["View in list", "View in table"]}>
+<Tabs items={["View in table", "View in list"]}>
+<Tab>
+  <PropsTable/>
+</Tab>
 <Tab>
 
 ### value
@@ -161,9 +165,6 @@ The following props are used to customize the QR code:
 - **Description**: The function to be called if there was an error loading the QR code.
 
 </Tab>
-<Tab>
-  <PropsTable/>
-</Tab>
 </Tabs>
 
 ## Extra types
@@ -220,8 +221,57 @@ export type InnerOuterRadius = {
 };
 ```
 
+## Methods
+
+You can also retrieve the url of the QRCode, which will be parsed as base64
+
+<ComponentExample src="/apps/docs/components/examples/download.tsx">
+<DownloadDemo />
+```tsx
+import { useRef } from "react";
+import { Button } from "@/components/ui/button";
+
+import { AwesomeQRCode, type AwesomeQRCodeRef } from "@awesome-qrcode/react";
+
+export function DownloadDemo() {
+  // Ref
+  const awesomeQRCodeRef = useRef<AwesomeQRCodeRef>(null); // 
+  // Handler
+  function download() {
+    if (awesomeQRCodeRef.current) {
+      const url = awesomeQRCodeRef.current.getUrl();
+      if (url) {
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "Awesome QRCode.png";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    }
+  }
+  return (
+    <>
+      <AwesomeQRCode
+        ref={awesomeQRCodeRef}
+        value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        size={200}
+      />
+      <Button className="mt-4" onClick={download}>
+        Download QRCode
+      </Button>
+    </>
+  );
+}
+
+```
+
+
+</ComponentExample>
+
 ---
 
 - This library is a refactor of Giulia Corò's [react-qrcode-logo](https://github.com/gcoro/react-qrcode-logo)
 - This implementation is based on JIS X 0510:1999.
 - The word "QR Code" is registered trademark of [DENSO WAVE INCORPORATED](http://www.denso-wave.com/qrcode/faqpatent-e.html)
+```
