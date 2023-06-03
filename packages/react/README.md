@@ -16,8 +16,8 @@ For full documentation, visit [awesome-qrcode.vercel.app](https://awesome-qrcode
 
 You can use the CodeSandbox links below try out:
 
-- with [Vite + React](https://codesandbox.io/p/sandbox/vite-wpebgz)
-- with [Next.js App Router](https://codesandbox.io/p/sandbox/nextjs-with-app-3po11o)
+- with [Next.js App Router](https://codesandbox.io/p/sandbox/github/ubinatus/awesome-qrcode/tree/main/apps/examples/with-nextjs)
+- with [Vite + React](https://codesandbox.io/p/sandbox/github/ubinatus/awesome-qrcode/tree/main/apps/examples/with-vite)
 
 ## Contributing
 
