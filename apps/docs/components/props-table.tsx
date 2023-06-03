@@ -53,19 +53,19 @@ const data = [
   {
     name: "logoWidth",
     type: "number",
-    default: "0",
+    default: "40",
     description: "The width of the logo in pixels.",
   },
   {
     name: "logoHeight",
     type: "number",
-    default: "0",
+    default: "40",
     description: "The height of the logo in pixels.",
   },
   {
     name: "logoOpacity",
     type: "number",
-    default: "0",
+    default: "1",
     description: "The opacity of the logo. Ranges from 0 to 1.",
   },
   {
