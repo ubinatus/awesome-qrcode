@@ -31,7 +31,7 @@ const config = {
     "^~/(.*)$",
     "^[./]",
   ],
-  importOrderTypeScriptVersion: "5.0.4",
+  importOrderTypeScriptVersion: "5.2.2",
   importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
 };
 
