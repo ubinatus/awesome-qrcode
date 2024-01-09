@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { CopyCode } from "@/components/copy-code";
 import { QRForm } from "@/components/qr-form";
 import { Button } from "@/components/ui/button";
@@ -59,14 +59,8 @@ function SiteCards() {
   // Ref
   const awesomeQRCodeRef = useRef<AwesomeQRCodeRef>(null);
   // State
+  const [isLoading, setIsLoading] = useState(false);
   const [options, setOptions] = useState<AwesomeQRCodeProps>(defaultValues);
-  // Effects
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, [options]);
   // Downloading the QRCode
   function download() {
     if (awesomeQRCodeRef.current) {
@@ -81,6 +75,12 @@ function SiteCards() {
       }
     }
   }
+  async function generate(opts: AwesomeQRCodeProps) {
+    setIsLoading(true);
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    setOptions(opts);
+    setIsLoading(false);
+  }
   return (
     <div className="lg:!my-15 my-8 flex w-full flex-col items-center justify-center gap-6 px-6 sm:mx-0 md:!my-14 md:mb-0 lg:!translate-y-0 lg:!flex-row">
       <Card>
@@ -92,7 +92,7 @@ function SiteCards() {
         </div>
       </Card>
       <div className="relative max-w-lg">
-        <QRForm setOptions={(val) => setOptions(val)} />
+        <QRForm setOptions={generate} isLoading={isLoading} />
       </div>
     </div>
   );

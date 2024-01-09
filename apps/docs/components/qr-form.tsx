@@ -18,15 +18,17 @@ import {
   type FormValues,
 } from "@/lib/form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { LoaderIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 
 import { type AwesomeQRCodeProps } from "@awesome-qrcode/react";
 
 type Props = {
   setOptions: (opts: AwesomeQRCodeProps) => void;
+  isLoading: boolean;
 };
 
-export function QRForm({ setOptions }: Props) {
+export function QRForm({ setOptions, isLoading }: Props) {
   // Form
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -192,8 +194,12 @@ export function QRForm({ setOptions }: Props) {
           />
         </div>
         <div className="flex flex-col gap-3 md:flex-row">
-          <Button type="submit" className="!bg-primary hover:!bg-primary/90">
-            Generate
+          <Button
+            disabled={isLoading}
+            type="submit"
+            className="min-w-[120px] !bg-primary hover:!bg-primary/90"
+          >
+            {isLoading ? <LoaderIcon className="animate-spin" /> : "Generate"}
           </Button>
           <div className="text-sm text-muted-foreground dark:text-muted">
             Simple usage of @awesome-qrcode/react.
