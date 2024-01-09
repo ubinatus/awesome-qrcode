@@ -1,5 +1,11 @@
 # @awesome-qrcode/react
 
+## 1.0.0
+
+### Major Changes
+
+- 0f3a820: bump deps to latest
+
 ## 0.2.0
 
 ### Minor Changes
