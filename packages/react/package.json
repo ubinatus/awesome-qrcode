@@ -14,11 +14,11 @@
   },
   "devDependencies": {
     "@awesome-qrcode/eslint-config": "workspace:*",
-    "@types/react": "^18.2.31",
-    "@types/react-dom": "^18.2.14",
-    "eslint": "^8.52.0",
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "eslint": "^8.56.0",
     "react": "^18.2.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.3"
   },
   "publishConfig": {
     "access": "public"
